@@ -1,5 +1,5 @@
 services:
-  # FastAPI Backend Service
+  # 🚀 FastAPI Backend Service
   - type: web
     name: nasa-backend
     runtime: python
@@ -23,24 +23,15 @@ services:
       - key: ENVIRONMENT
         value: production
 
-  # React Frontend Static Site
-  - type: static
+  # 🌐 React Frontend Service (Static Build)
+  - type: web
     name: nasa-frontend
+    runtime: node
     buildCommand: "cd 'NASA Frontend' && npm ci && npm run build"
-    staticPublishPath: "./NASA Frontend/dist"
+    startCommand: "cd 'NASA Frontend' && npx serve -s dist -l $PORT"
     plan: free
-    headers:
-      - path: /*
-        name: X-Robots-Tag
-        value: noindex
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
     envVars:
       - key: NODE_ENV
         value: production
       - key: VITE_API_URL
         value: https://nasa-backend.onrender.com
-
-databases: []
