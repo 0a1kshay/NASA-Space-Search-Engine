@@ -1,7 +1,20 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+// Dynamic API URL configuration for different environments
+const getApiBaseUrl = () => {
+  // Production: Use environment variable
+  if (import.meta.env.PROD) {
+    return import.meta.env.VITE_API_URL || 'https://nasa-backend.onrender.com';
+  }
+  
+  // Development: Use local or environment variable
+  return import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+};
+
+const API_BASE_URL = getApiBaseUrl();
 const API_KEY = import.meta.env.VITE_API_KEY || 'i31G2AKUI24gGq2oaw8w8sYGryZEjMArrJEjffcT';
+
+console.log(`🌐 API Base URL: ${API_BASE_URL}`);
 
 // Create axios instance with base configuration
 const api = axios.create({

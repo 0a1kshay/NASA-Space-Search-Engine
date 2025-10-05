@@ -1,5 +1,5 @@
 fastapi==0.104.0
-uvicorn==0.23.2
+uvicorn[standard]==0.23.2
 pydantic==2.4.2
 python-dotenv==1.0.0
 neo4j==5.14.0
@@ -8,9 +8,20 @@ python-multipart==0.0.6
 numpy==1.26.4
 pandas==2.2.2
 httpx==0.25.0
+
 # MongoDB fallback requirements
 pymongo==4.6.0
 
 # NASA API Integration
 aiohttp>=3.8.0
 async-timeout>=4.0.0
+
+# Production dependencies
+gunicorn==21.2.0
+email-validator==2.1.0
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# Security and monitoring
+python-multipart==0.0.6
+slowapi==0.1.9

@@ -26,9 +26,9 @@ app = FastAPI(
 )
 
 # Configure CORS for frontend connection
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
+def get_cors_origins():
+    """Get CORS origins based on environment"""
+    base_origins = [
         "http://localhost:3000",  # React dev server
         "http://localhost:5173",  # Vite dev server
         "http://localhost:5174",  # Vite dev server (alternate port)
@@ -36,7 +36,28 @@ app.add_middleware(
         "http://127.0.0.1:5173",
         "http://127.0.0.1:5174",
         "http://localhost:4173",  # Vite preview
-    ],
+    ]
+    
+    # Add production origins
+    frontend_url = os.getenv("FRONTEND_URL")
+    if frontend_url:
+        base_origins.extend([
+            frontend_url,
+            frontend_url.replace("http://", "https://"),  # Support both HTTP and HTTPS
+        ])
+    
+    # Add common Render.com patterns
+    render_app_name = os.getenv("RENDER_SERVICE_NAME", "nasa-frontend")
+    base_origins.extend([
+        f"https://{render_app_name}.onrender.com",
+        f"https://nasa-frontend.onrender.com",  # fallback
+    ])
+    
+    return base_origins
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=get_cors_origins(),
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=[

@@ -1,0 +1,16 @@
+# Render Build Configuration
+# This file contains build and deployment settings for Render.com
+
+# Backend Configuration
+BACKEND_DIR=NASA Backend
+BACKEND_BUILD_COMMAND=pip install -r requirements.txt
+BACKEND_START_COMMAND=python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+
+# Frontend Configuration  
+FRONTEND_DIR=NASA Frontend
+FRONTEND_BUILD_COMMAND=npm ci && npm run build
+FRONTEND_PUBLISH_DIR=dist
+
+# Environment Requirements
+PYTHON_VERSION=3.11
+NODE_VERSION=18
