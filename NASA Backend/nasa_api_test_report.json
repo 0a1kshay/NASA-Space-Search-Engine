@@ -1,0 +1,24 @@
+{
+  "test_timestamp": "2025-10-05T05:12:23.232663",
+  "nasa_api_status": {
+    "osdr_main": {
+      "status": "error",
+      "message": "HTTP 404"
+    },
+    "osdr_biodata": {
+      "status": "error",
+      "message": "HTTP 404"
+    },
+    "ntrs": {
+      "status": "error",
+      "message": "HTTP 404"
+    },
+    "nslsl": {
+      "status": "error",
+      "message": "[Errno 11001] getaddrinfo failed"
+    }
+  },
+  "recommendations": [
+    "Critical: Fix API connectivity issues before deployment"
+  ]
+}

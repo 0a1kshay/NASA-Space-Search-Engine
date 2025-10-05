@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* NASA Space Biology Theme - Light Mode */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* NASA Blue Primary */
+    --primary: 214 78% 31%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Cosmic Black Secondary */
+    --secondary: 220 20% 20%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 90%;
+    --muted-foreground: 215 15% 45%;
+
+    /* NASA Orange Accent */
+    --accent: 9 95% 56%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Teal Tech Accent */
+    --tech-accent: 180 70% 45%;
+    --tech-accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 20% 85%;
+    --input: 214 20% 90%;
+    --ring: 214 78% 31%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(214 78% 31%) 0%, hsl(220 20% 20%) 100%);
+    --gradient-space: linear-gradient(180deg, hsl(220 25% 10%) 0%, hsl(214 78% 31%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(9 95% 56%) 0%, hsl(180 70% 45%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(214 78% 31% / 0.3);
+    --shadow-accent-glow: 0 0 20px hsl(9 95% 56% / 0.4);
+  }
+
+  .dark {
+    /* NASA Space Biology Theme - Dark Mode (Cosmic) */
+    --background: 220 25% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 210 20% 98%;
+
+    /* NASA Blue Primary (lighter in dark) */
+    --primary: 214 90% 60%;
+    --primary-foreground: 220 25% 8%;
+    
+    /* Cosmic Black Secondary */
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 215 15% 65%;
+
+    /* NASA Orange Accent */
+    --accent: 9 95% 56%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Teal Tech Accent */
+    --tech-accent: 180 70% 55%;
+    --tech-accent-foreground: 220 25% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 18%;
+    --ring: 214 90% 60%;
+
+    /* Enhanced Gradients for Dark Mode */
+    --gradient-cosmic: linear-gradient(135deg, hsl(214 90% 20%) 0%, hsl(220 25% 8%) 100%);
+    --gradient-space: linear-gradient(180deg, hsl(220 25% 8%) 0%, hsl(214 78% 31%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(9 95% 56%) 0%, hsl(180 70% 55%) 100%);
+    
+    /* Enhanced Shadows for Dark Mode */
+    --shadow-glow: 0 0 40px hsl(214 90% 60% / 0.4);
+    --shadow-accent-glow: 0 0 30px hsl(9 95% 56% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(214 20% 85%);
+  }
+
+  body {
+    background-color: hsl(210 20% 98%);
+    color: hsl(215 25% 15%);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Gradient backgrounds */
+  .bg-gradient-cosmic {
+    background: var(--gradient-cosmic);
+  }
+  
+  .bg-gradient-space {
+    background: var(--gradient-space);
+  }
+  
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  /* Glow effects */
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .shadow-accent-glow {
+    box-shadow: var(--shadow-accent-glow);
+  }
+  
+  /* Hover scale animation */
+  .hover-lift {
+    transition: all 0.3s ease-out;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Glass effect */
+  .glass {
+    background-color: hsl(0 0% 100% / 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(214 20% 85% / 0.5);
+  }
+}

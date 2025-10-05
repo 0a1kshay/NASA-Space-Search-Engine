@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; padding: 20px; }
+        .test-result { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🚀 NASA API Connection Test</h1>
+    <div id="results"></div>
+    <button onclick="testConnection()">Test API Connection</button>
+    <button onclick="clearResults()">Clear</button>
+
+    <script>
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            document.getElementById('results').appendChild(div);
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+        
+        async function testConnection() {
+            clearResults();
+            log('🔍 Testing API Connection...');
+            
+            // Test search with API key
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/search/?query=test&limit=1', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': 'i31G2AKUI24gGq2oaw8w8sYGryZEjMArrJEjffcT'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    log(`✅ API Connection SUCCESS! Found ${data.count || 0} results`, 'success');
+                    log(`📊 Response: <pre>${JSON.stringify(data, null, 2)}</pre>`);
+                } else {
+                    log(`❌ API Error: ${response.status} ${response.statusText}`, 'error');
+                }
+            } catch (error) {
+                log(`💥 Connection Error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Auto-test on load
+        window.onload = () => testConnection();
+    </script>
+</body>
+</html>
