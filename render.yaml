@@ -23,10 +23,9 @@ services:
       - key: ENVIRONMENT
         value: production
 
-  # React Frontend Service
-  - type: web
+  # React Frontend Static Site
+  - type: static
     name: nasa-frontend
-    runtime: node
     buildCommand: "cd 'NASA Frontend' && npm ci && npm run build"
     staticPublishPath: "./NASA Frontend/dist"
     plan: free
@@ -42,9 +41,6 @@ services:
       - key: NODE_ENV
         value: production
       - key: VITE_API_URL
-        fromService:
-          name: nasa-backend
-          type: web
-          property: host
+        value: https://nasa-backend.onrender.com
 
 databases: []
