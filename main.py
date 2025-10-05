@@ -1,6 +1,5 @@
 """
-Vercel API Entry Point for NASA Space Biology Knowledge Engine
-This file serves as the entry point for Vercel deployment
+Alternative entry point - main.py at root level
 """
 
 import sys
@@ -23,10 +22,9 @@ backend_main = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(backend_main)
 app = backend_main.app
 
-# Export the app for Vercel (this is what Vercel looks for)
+# Export the app for Vercel
 handler = app
 
-# This is the entry point that Vercel will use
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

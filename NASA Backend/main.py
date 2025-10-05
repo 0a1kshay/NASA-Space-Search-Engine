@@ -9,6 +9,10 @@ import os
 # Load environment variables
 load_dotenv()
 
+# Configure logging first
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 # Import routers
 from app.routers import search, graph, summarize, compare, ingest
 
@@ -19,10 +23,6 @@ try:
 except ImportError:
     from app.csv_service import csv_service
     logger.info("Using pandas CSV service")
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="NASA Space Biology Knowledge Engine API",

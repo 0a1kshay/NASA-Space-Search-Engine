@@ -2,7 +2,23 @@
   "version": 2,
   "builds": [
     {
-      "src": "api.py",
+      "src": "main.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.11"
+      }
+    },
+    {
+      "src": "index.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "15mb",
+        "runtime": "python3.11"
+      }
+    },
+    {
+      "src": "server.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
@@ -13,14 +29,20 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api.py"
+      "dest": "main.py"
     }
   ],
   "env": {
-    "PYTHONPATH": "NASA Backend"
+    "PYTHONPATH": "."
   },
   "functions": {
-    "api.py": {
+    "main.py": {
+      "includeFiles": "NASA Backend/**"
+    },
+    "index.py": {
+      "includeFiles": "NASA Backend/**"
+    },
+    "server.py": {
       "includeFiles": "NASA Backend/**"
     }
   }

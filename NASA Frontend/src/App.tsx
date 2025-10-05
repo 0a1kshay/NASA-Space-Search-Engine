@@ -10,7 +10,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import FAQ from "./pages/FAQ";
-// import TestConnection from "./pages/TestConnection"; // INACTIVE
+import TestConnection from "./pages/TestConnection";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/faq" element={<FAQ />} />
-          {/* <Route path="/test" element={<TestConnection />} /> */} {/* INACTIVE */}
+          <Route path="/test" element={<TestConnection />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

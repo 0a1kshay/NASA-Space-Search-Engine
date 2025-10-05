@@ -6,15 +6,17 @@ This guide will help you deploy your FastAPI backend to Vercel with proper entry
 ## Files Created for Vercel Deployment:
 
 ### 1. `vercel.json` - Vercel Configuration
-- Specifies `api.py` as the entry point
+- Specifies multiple entry points (`main.py`, `index.py`, `server.py`)
 - Configures Python 3.11 runtime
 - Sets up routing to handle all requests
 - Includes NASA Backend files in the deployment
 
-### 2. `api.py` - Root Level Entry Point
-- Acts as the main entry point that Vercel can detect
-- Handles path setup for the NASA Backend directory
-- Imports the FastAPI app from `NASA Backend/main.py`
+### 2. Multiple Entry Points Created:
+- `main.py` - Primary entry point (Vercel looks for this first)
+- `index.py` - Alternative entry point 
+- `server.py` - Server entry point
+- `api.py` - API entry point
+All handle path setup and import the FastAPI app from `NASA Backend/main.py`
 
 ### 3. `requirements.txt` - Root Level Dependencies
 - Pandas-free version for better Vercel compatibility
@@ -24,6 +26,11 @@ This guide will help you deploy your FastAPI backend to Vercel with proper entry
 - Uses pure Python instead of pandas
 - Compatible with serverless deployment
 - Maintains the same API as the original service
+
+### 5. Fixed Import Issues:
+- Resolved circular import problems
+- Fixed logger initialization order in `NASA Backend/main.py`
+- Proper module loading to avoid naming conflicts
 
 ## Deployment Steps:
 
@@ -97,13 +104,16 @@ After deployment, test these endpoints:
 ## Project Structure for Vercel:
 ```
 /
-├── api.py                 # Vercel entry point
-├── requirements.txt       # Root level dependencies
-├── vercel.json           # Vercel configuration
-├── .env.example          # Environment variables template
-└── NASA Backend/         # Your existing backend code
-    ├── main.py           # FastAPI app
-    ├── requirements.txt  # Backend dependencies (backup)
+├── main.py               # Primary Vercel entry point ✅
+├── index.py              # Alternative entry point ✅  
+├── server.py             # Server entry point ✅
+├── api.py                # API entry point ✅
+├── requirements.txt      # Root level dependencies
+├── vercel.json          # Vercel configuration
+├── .env                 # Environment variables
+└── NASA Backend/        # Your existing backend code
+    ├── main.py          # FastAPI app (fixed logger issue)
+    ├── requirements.txt # Backend dependencies (backup)
     └── app/
         ├── csv_service_lightweight.py  # Pandas-free service
         └── ...
