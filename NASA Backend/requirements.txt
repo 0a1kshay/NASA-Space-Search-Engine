@@ -1,27 +1,36 @@
-fastapi==0.104.0
-uvicorn[standard]==0.23.2
-pydantic==2.4.2
+# 🚀 NASA Backend Dependencies - Python 3.11 Compatible
+# Core FastAPI stack
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.3
 python-dotenv==1.0.0
-neo4j==5.14.0
-openai==1.1.0
+
+# Database connections
+neo4j==5.15.0
+pymongo==4.6.1
+
+# AI/ML integrations
+openai==1.6.1
+
+# Data processing (lightweight alternatives to pandas)
+numpy==1.24.4
+# pandas==2.0.3  # Using lightweight CSV processing instead
+
+# HTTP clients
+httpx==0.25.2
+aiohttp==3.9.1
+async-timeout==4.0.3
+
+# File handling
 python-multipart==0.0.6
-numpy==1.26.4
-pandas==2.2.2
-httpx==0.25.0
 
-# MongoDB fallback requirements
-pymongo==4.6.0
-
-# NASA API Integration
-aiohttp>=3.8.0
-async-timeout>=4.0.0
-
-# Production dependencies
+# Production server
 gunicorn==21.2.0
+
+# Security
 email-validator==2.1.0
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 
-# Security and monitoring
-python-multipart==0.0.6
+# Monitoring (optional)
 slowapi==0.1.9
