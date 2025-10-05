@@ -11,7 +11,14 @@ load_dotenv()
 
 # Import routers
 from app.routers import search, graph, summarize, compare, ingest
-from app.csv_service import csv_service
+
+# Try to import lightweight CSV service first, fallback to pandas version
+try:
+    from app.csv_service_lightweight import csv_service
+    logger.info("Using lightweight CSV service (no pandas)")
+except ImportError:
+    from app.csv_service import csv_service
+    logger.info("Using pandas CSV service")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
